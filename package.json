@@ -4,7 +4,7 @@
   "description": "a session plugin for fastify",
   "main": "lib/fastifySession.js",
   "scripts": {
-    "unit": "ava test/*.test.js",
+    "unit": "tap test/*.test.js",
     "tsc-check": "tsc --project ./types/tsconfig.json --noEmit",
     "test": "npm run lint && npm run unit && npm run tsc-check",
     "lint": "standard lib/* test/*",
@@ -31,12 +31,12 @@
   },
   "devDependencies": {
     "@types/node": "^16.4.6",
-    "ava": "^3.6.0",
     "fastify": "^3.0.0",
     "fastify-cookie": "^5.3.1",
     "got": "^11.6.0",
     "nyc": "^15.0.0",
     "standard": "^16.0.1",
+    "tap": "^15.0.9",
     "typescript": "^4.0.2"
   },
   "types": "types/types.d.ts",

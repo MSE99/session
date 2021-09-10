@@ -1,11 +1,11 @@
 'use strict'
 
-const test = require('ava')
+const { test } = require('tap')
 const Fastify = require('fastify')
 const fastifyCookie = require('fastify-cookie')
 const fastifySession = require('..')
 
-test.cb('register should fail if no secret is specified', t => {
+test('register should fail if no secret is specified', t => {
   t.plan(1)
   const fastify = Fastify()
 
@@ -13,12 +13,12 @@ test.cb('register should fail if no secret is specified', t => {
   fastify.register(fastifyCookie)
   fastify.register(fastifySession, options)
   fastify.ready((err) => {
-    t.true(err instanceof Error)
+    t.ok(err instanceof Error)
     t.end()
   })
 })
 
-test.cb('register should succeed if valid secret is specified', t => {
+test('register should succeed if valid secret is specified', t => {
   t.plan(1)
   const fastify = Fastify()
 
@@ -26,12 +26,12 @@ test.cb('register should succeed if valid secret is specified', t => {
   fastify.register(fastifyCookie)
   fastify.register(fastifySession, options)
   fastify.ready((err) => {
-    t.falsy(err)
+    t.notOk(err)
     t.end()
   })
 })
 
-test.cb('register should fail if the secret is too short', t => {
+test('register should fail if the secret is too short', t => {
   t.plan(1)
   const fastify = Fastify()
 
@@ -39,12 +39,12 @@ test.cb('register should fail if the secret is too short', t => {
   fastify.register(fastifyCookie)
   fastify.register(fastifySession, options)
   fastify.ready((err) => {
-    t.true(err instanceof Error)
+    t.ok(err instanceof Error)
     t.end()
   })
 })
 
-test.cb('register should succeed if secret is short, but in an array', t => {
+test('register should succeed if secret is short, but in an array', t => {
   t.plan(1)
   const fastify = Fastify()
 
@@ -52,12 +52,12 @@ test.cb('register should succeed if secret is short, but in an array', t => {
   fastify.register(fastifyCookie)
   fastify.register(fastifySession, options)
   fastify.ready((err) => {
-    t.falsy(err)
+    t.notOk(err)
     t.end()
   })
 })
 
-test.cb('register should succeed if multiple secrets are present', t => {
+test('register should succeed if multiple secrets are present', t => {
   t.plan(1)
   const fastify = Fastify()
 
@@ -65,12 +65,12 @@ test.cb('register should succeed if multiple secrets are present', t => {
   fastify.register(fastifyCookie)
   fastify.register(fastifySession, options)
   fastify.ready((err) => {
-    t.falsy(err)
+    t.notOk(err)
     t.end()
   })
 })
 
-test.cb('register should fail if no secret is present in array', t => {
+test('register should fail if no secret is present in array', t => {
   t.plan(1)
   const fastify = Fastify()
 
@@ -78,7 +78,7 @@ test.cb('register should fail if no secret is present in array', t => {
   fastify.register(fastifyCookie)
   fastify.register(fastifySession, options)
   fastify.ready((err) => {
-    t.true(err instanceof Error)
+    t.ok(err instanceof Error)
     t.end()
   })
 })
